@@ -5,6 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🎉 Happy Birthday Taiwo Eniola Precious 💖</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Music button styling */
+    #playMusicBtn {
+      background-color: #ff4081;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 1.1em;
+      cursor: pointer;
+      margin: 15px auto;
+      display: block;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: 0.3s ease;
+    }
+
+    #playMusicBtn:hover {
+      background-color: #e91e63;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -13,6 +34,9 @@
       Today we celebrate the beautiful soul that you are — filled with love, joy, and endless grace.
       You’re a blessing to everyone around you, and today we thank God for the gift of you. 🌸
     </p>
+
+    <!-- Play music button -->
+    <button id="playMusicBtn">🎵 Tap to Play Music</button>
 
     <div class="card">
       <div class="slideshow-container">
@@ -38,31 +62,26 @@
     </p>
   </div>
 
-  <!-- Background music -->
-  <audio id="bg-music" autoplay loop>
+  <!-- Background music (hidden) -->
+  <audio id="bgMusic" loop>
     <source src="./song/song.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Surprise Balloons -->
   <div class="balloon-container"></div>
 
-  <!-- Confetti -->
+  <!-- Confetti (small surprise effect) -->
   <canvas id="confetti"></canvas>
 
   <script>
-    // --- Autoplay workaround for browsers ---
-    const music = document.getElementById('bg-music');
-    document.addEventListener('DOMContentLoaded', () => {
-      const playPromise = music.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setTimeout(() => (music.muted = false), 1000); // Unmute after start
-          })
-          .catch(() => {
-            console.log("Autoplay blocked. User may need to interact with the page first.");
-          });
-      }
+    // --- Play Music on Button Click ---
+    const playBtn = document.getElementById("playMusicBtn");
+    const bgMusic = document.getElementById("bgMusic");
+
+    playBtn.addEventListener("click", () => {
+      bgMusic.play()
+        .then(() => playBtn.style.display = "none") // Hide button after play starts
+        .catch(err => console.log("Autoplay blocked:", err));
     });
 
     // --- Slideshow Logic ---
@@ -82,7 +101,7 @@
         slideshow.src = images[index];
         slideshow.style.opacity = 1;
       }, 500);
-    }, 6000); // change every 6s
+    }, 6000);
 
     // --- Balloon Surprise Animation ---
     const balloonContainer = document.querySelector(".balloon-container");
@@ -96,7 +115,7 @@
     }
     setInterval(createBalloon, 500);
 
-    // --- Confetti Animation ---
+    // --- Simple Confetti Animation ---
     const confetti = document.getElementById("confetti");
     const ctx = confetti.getContext("2d");
     confetti.width = window.innerWidth;
