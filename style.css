@@ -1,137 +1,136 @@
+/* General Page Style */
 body {
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
-  background: linear-gradient(120deg, #ff9a9e, #fad0c4);
-  color: white;
   margin: 0;
   padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #ffdee9 0%, #b5fffc 100%);
   overflow-x: hidden;
+  text-align: center;
+  color: #333;
 }
 
+/* Container */
 .container {
-  padding: 20px;
-}
-
-h1 {
-  margin-top: 40px;
-  font-size: 2.5em;
-  text-shadow: 3px 3px 10px rgba(0,0,0,0.3);
-  animation: fadeIn 2s ease-in-out;
-}
-
-.intro {
-  font-size: 1.2em;
-  margin-bottom: 20px;
-  animation: fadeIn 3s ease-in-out;
-}
-
-/* Card box for images and video */
-.card {
-  background: rgba(255, 255, 255, 0.1);
+  max-width: 800px;
+  margin: 60px auto;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 30px;
   border-radius: 20px;
-  padding: 20px;
-  margin: 20px auto;
-  width: 90%;
-  max-width: 450px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1 {
+  font-size: 2em;
+  color: #e91e63;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.2);
+}
+
+/* Intro and Prayers */
+.intro, .prayers {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #444;
+}
+
+.prayers strong {
+  color: #ff4081;
+}
+
+.signature {
+  margin-top: 30px;
+  font-weight: bold;
+  color: #e91e63;
+  font-size: 1.2em;
 }
 
 /* Slideshow */
-.slideshow-container img {
+.slideshow-container {
+  position: relative;
+  margin: 20px auto;
   width: 100%;
+  height: 380px;
+  overflow: hidden;
   border-radius: 15px;
-  transition: opacity 1s ease-in-out;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Video section */
-.video-section video {
-  width: 100%;
-  margin-top: 15px;
-  border-radius: 15px;
-}
-
-/* Balloons with strings */
-.balloon-container {
-  position: fixed;
-  bottom: -100px;
-  left: 0;
+#slideshow {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  z-index: -1;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: opacity 0.8s ease-in-out;
 }
 
-.balloon {
-  position: absolute;
-  width: 40px;
-  height: 55px;
-  border-radius: 50% 50% 45% 45%;
-  background-color: pink;
-  animation: float 8s linear infinite;
+/* Video Section */
+.video-section {
+  margin-top: 20px;
 }
 
-.balloon::after {
-  content: "";
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  width: 2px;
-  height: 25px;
-  background: white;
-  transform: translateX(-50%);
+.video-section video {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes float {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-110vh) scale(1.1); opacity: 0; }
-}
-
-/* Confetti layer */
-#confetti {
+/* Balloons */
+.balloon-container {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: -2;
+  overflow: hidden;
+  z-index: 5;
 }
 
-/* Prayers section */
-.prayers {
-  margin-top: 30px;
-  font-size: 1.1em;
-  line-height: 1.6;
-  background: rgba(255,255,255,0.15);
-  border-radius: 15px;
-  padding: 15px;
-  width: 90%;
-  max-width: 450px;
-  margin: 30px auto;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  width: 40px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: pink;
+  opacity: 0.8;
+  animation: floatUp 8s ease-in infinite;
 }
 
-/* Signature */
-.signature {
-  margin-top: 20px;
-  font-size: 1.2em;
-  text-shadow: 0 0 10px rgba(255,255,255,0.5);
-  animation: fadeIn 4s ease-in-out;
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.2);
+    opacity: 0;
+  }
 }
 
-/* Fade-in animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Confetti */
+#confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
   h1 {
-    font-size: 1.8em;
+    font-size: 1.6em;
   }
   .intro, .prayers {
     font-size: 1em;
+  }
+  .slideshow-container {
+    height: 250px;
   }
 }

@@ -39,17 +39,32 @@
   </div>
 
   <!-- Background music -->
-  <audio autoplay loop hidden>
+  <audio id="bg-music" autoplay loop>
     <source src="./song/song.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Surprise Balloons -->
   <div class="balloon-container"></div>
 
-  <!-- Confetti (small surprise effect) -->
+  <!-- Confetti -->
   <canvas id="confetti"></canvas>
 
   <script>
+    // --- Autoplay workaround for browsers ---
+    const music = document.getElementById('bg-music');
+    document.addEventListener('DOMContentLoaded', () => {
+      const playPromise = music.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setTimeout(() => (music.muted = false), 1000); // Unmute after start
+          })
+          .catch(() => {
+            console.log("Autoplay blocked. User may need to interact with the page first.");
+          });
+      }
+    });
+
     // --- Slideshow Logic ---
     const images = [
       "./images/one.jpeg",
@@ -67,7 +82,7 @@
         slideshow.src = images[index];
         slideshow.style.opacity = 1;
       }, 500);
-    }, 6000); // 6 seconds
+    }, 6000); // change every 6s
 
     // --- Balloon Surprise Animation ---
     const balloonContainer = document.querySelector(".balloon-container");
@@ -81,7 +96,7 @@
     }
     setInterval(createBalloon, 500);
 
-    // --- Simple Confetti Animation ---
+    // --- Confetti Animation ---
     const confetti = document.getElementById("confetti");
     const ctx = confetti.getContext("2d");
     confetti.width = window.innerWidth;
