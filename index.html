@@ -16,11 +16,11 @@
 
     <div class="card">
       <div class="slideshow-container">
-        <img id="slideshow" src="images/one.jpeg" alt="Taiwo" />
+        <img id="slideshow" src="./images/one.jpeg" alt="Taiwo" />
       </div>
 
       <div class="video-section">
-        <video src="videos/video1.mp4" autoplay muted loop></video>
+        <video src="./videos/video1.mp4" autoplay muted loop></video>
       </div>
     </div>
 
@@ -40,7 +40,7 @@
 
   <!-- Background music -->
   <audio autoplay loop hidden>
-    <source src="song/song.mp3" type="audio/mpeg">
+    <source src="./song/song.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Surprise Balloons -->
@@ -52,11 +52,11 @@
   <script>
     // --- Slideshow Logic ---
     const images = [
-      "images/one.jpeg",
-      "images/two.jpeg",
-      "images/three.jpeg",
-      "images/four.jpeg",
-      "images/five.jpeg"
+      "./images/one.jpeg",
+      "./images/two.jpeg",
+      "./images/three.jpeg",
+      "./images/four.jpeg",
+      "./images/five.jpeg"
     ];
     let index = 0;
     const slideshow = document.getElementById("slideshow");
